@@ -46,10 +46,12 @@ def generate_example(l):
     yield (x, y)
 
 
+np.random.seed(666)
 
 x,y = generate_data(20000, means=np.random.uniform(-11,11, 20), variances=np.random.uniform(0,11, 10))
+val_x, val_y = generate_data(2000, means=np.random.uniform(-11,11, 20), variances=np.random.uniform(0,11, 10))
 
-model.fit(x,y, nb_epoch=600 , shuffle=True,callbacks=[keras.callbacks.ModelCheckpoint(save_best_only=False, period=10, filepath='/Users/vlasteli/PycharmProjects/artificial_neural_networks/gen_gauss_player')])
+model.fit(x,y, nb_epoch=600 , validation_data=(val_x, val_y),shuffle=True,callbacks=[keras.callbacks.ModelCheckpoint(save_best_only=False, period=10, filepath='/Users/vlasteli/PycharmProjects/artificial_neural_networks/gen_gauss_player2')])
 
 
 
